@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nhận diện biển số xe</title>
+</head>
+
+<body>
+    <h1>Nhận diện biển số xe</h1>
+
+    <form method="POST" enctype="multipart/form-data">
+        {{ form.hidden_tag() }}
+        <p>
+        {{ form.file.label }}<br>
+        {{ form.file() }}
+        </p>
+        <p>{{ form.submit() }}</p>
+    </form>
+
+    {% if image %}
+    <h2>Kết quả nhận diện:</h2>
+    <p>Biển số nhận diện: <strong>{{ plate_text }}</strong></p>
+    <img src="{{ image }}" width="400">
+    <!-- Nút phát âm thanh -->
+    {% if audio_file %}
+    <audio autoplay>
+        <source src="{{ url_for('static', filename=audio_file) }}" type="audio/mpeg">
+    </audio>
+    <button onclick="document.querySelector('audio').play()" class="btn btn-primary mt-2">Phát lại</button>
+    {% endif %}
+    {% endif %}
+</body>
+
+</html>

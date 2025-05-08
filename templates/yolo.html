@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Vehicle Tracking</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+
+        img {
+            max-width: 100%;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <h1>Vehicle Tracking</h1>
+
+    <form method="POST" enctype="multipart/form-data">
+
+        {{ form.hidden_tag() }} <!-- Includes CSRF token -->
+
+        <label for="file">Video:</label>
+
+        {{ form.file(size=20) }}
+
+        {% if form.file.errors %}
+
+        {% for error in form.file.errors %}
+
+        <b style="color: red;">{{ error }}</b><br>
+
+        {% endfor %}
+
+        {% endif %}
+
+        <br><br>
+
+        {{ form.submit() }}
+
+    </form>
+
+</body>
+
+</html>
